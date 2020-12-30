@@ -26,6 +26,8 @@ const parseReport = (forecast, location) => {
       }
     })
 
+  if (!snowPeriods.length) return ''
+
   snowPeriods.forEach((period) => {
     report = report + period.message + '\n\n'
   })
@@ -54,8 +56,12 @@ const snowReportController = async () => {
     const forecast = await fetchForecast(location)
 
     const reportMsg = parseReport(forecast, location)
-  
-    sendSms(reportMsg, location.subscribers)
+
+    if (reportMsg) {
+      sendSms(reportMsg, location.subscribers)
+    } else {
+      console.log(`no snow for ${location.name}.`)
+    }
   })
 }
 
