@@ -35,11 +35,11 @@ const parseReport = (forecast, location) => {
   return report
 }
 
-const sendSms = (msg, subscribers) => {
-  const onSuccess = () => console.log('successfully sent sms message.')
+const sendSms = (msg, location) => {
   const onError = (err) => console.error(`error: ${err}`)
 
-  subscribers.forEach((subscriberNumber) => {
+  location.subscribers.forEach((subscriberNumber) => {
+    const onSuccess = () => console.log(`Successfully sent ${location.name} snow report to ${subscriberNumber}.`)
     smsTools.sendSms({
       body: msg,
       to: subscriberNumber,
@@ -58,7 +58,7 @@ const snowReportController = async () => {
     const reportMsg = parseReport(forecast, location)
 
     if (reportMsg) {
-      sendSms(reportMsg, location.subscribers)
+      sendSms(reportMsg, location)
     } else {
       console.log(`no snow for ${location.name}.`)
     }
