@@ -1,6 +1,7 @@
 const fetch = require('node-fetch')
 const smsTools = require('./smsTools.js')
 const locations = require('./locations.js')
+const testLocations = require('./testLocations.js')
 
 const fetchForecast = async (location) => {
   const forecast = await fetch(`https://api.weather.gov/gridpoints/${location.gridpoints}/forecast`)
@@ -49,10 +50,11 @@ const sendSms = (msg, location) => {
   })
 }
 
-const snowReportController = async () => {
+const snowReportController = async (type) => {
   // controller for application
+  const locs = type === 'test' ? testLocations : locations
 
-  locations.forEach(async (location) => {
+  locs.forEach(async (location) => {
     const forecast = await fetchForecast(location)
 
     const reportMsg = parseReport(forecast, location)
