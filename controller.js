@@ -18,12 +18,20 @@ const parseReport = (forecast, location) => {
 
   const snowPeriods = forecast.properties.periods
     .filter((period) => period.shortForecast.toLowerCase().includes('snow'))
-    .filter((period) => period.detailedForecast.toLowerCase().includes('inches'))
-    .filter((period) => !period.detailedForecast.toLowerCase().includes('new snow accumulation of less than one inch possible.'))
+    //.filter((period) => period.detailedForecast.toLowerCase().includes('inches'))
+    //.filter((period) => !period.detailedForecast.toLowerCase().includes('new snow accumulation of less than one inch possible.'))
     .map((period) => {
+      const temperaturePhrase = period.name.toLowerCase().includes('night')
+        ? `Low around ${period.temperature}${period.temperatureUnit}.`
+        : `High around ${period.temperature}${period.temperatureUnit}.`
+
+      const appendedTempSentance = trimToLastSentence(period.detailedForecast).includes(period.temperature)
+        ? ''
+	: temperaturePhrase
+      
       return {
         ...period,
-        message: `${period.name}: ${period.shortForecast}. ${trimToLastSentence(period.detailedForecast)} ${period.temperature}${period.temperatureUnit}.`,
+        message: `${period.name}: ${period.shortForecast}. ${trimToLastSentence(period.detailedForecast)} ${appendedTempSentance}`,
       }
     })
 
