@@ -17,6 +17,17 @@ const parseReport = (forecast, location) => {
 
   const trimToLastSentence = (str) => str.slice(str.lastIndexOf('.', str.length - 2) + 2, str.length)
 
+  // if no periods given, send message
+  if (!forecast?.properties?.periods) {
+    report = report + 'report crapped out... sorry. 😬'
+    inchesOnlyReport = inchesOnlyReport + 'report crapped out... sorry. 😬'
+
+    console.warn(`${location.name} crapped out...`)
+    console.warn(JSON.stringify(forecast))
+
+    return [report, inchesOnlyReport]
+  }
+
   const snowPeriods = forecast.properties.periods
     .filter((period) => period.shortForecast.toLowerCase().includes('snow'))
     .filter((period) => period.detailedForecast.toLowerCase().includes('inches') || period.detailedForecast.toLowerCase().includes('inch'))
