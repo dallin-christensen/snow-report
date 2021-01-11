@@ -18,7 +18,7 @@ const parseReport = (forecast, location) => {
   const trimToLastSentence = (str) => str.slice(str.lastIndexOf('.', str.length - 2) + 2, str.length)
 
   // if no periods given, send message
-  if (!forecast?.properties?.periods) {
+  if (!forecast.properties) {
     report = report + 'report crapped out... sorry. 😬'
     inchesOnlyReport = inchesOnlyReport + 'report crapped out... sorry. 😬'
 
