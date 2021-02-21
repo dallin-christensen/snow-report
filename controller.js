@@ -80,14 +80,21 @@ const snowReportController = async (type) => {
   const locs = type === 'test' ? testLocations : locations
 
   locs.forEach(async (location) => {
-    const forecast = await fetchForecast(location)
+    let forecast = await fetchForecast(location)
+    
+    // if failed, try again.
+    if (!forecast.properties) {
+      forecast = await fetchForecast(location)
+    }
 
     const reportMsgs = parseReport(forecast, location)
 
     if (reportMsgs) {
       sendSms(reportMsgs, location)
     } else {
-      console.log(`no snow for ${location.name}.`)
+      const noSnowMsg = `no snow for ${location.name}`
+      const noSnowReport = [noSnowMsg, noSnowMsg]
+      sendSms(noSnowReport, location)
     }
   })
 }
