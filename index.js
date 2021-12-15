@@ -26,7 +26,7 @@ const startApp = () => {
       clearInterval(watchForTopOfHour)
       runAutomatedSnowReport()
     }
-    console.log('interval')
+    console.log('awaiting top of hour')
   }, MINUTE_MS)
 }
 
