@@ -1,5 +1,7 @@
 const snowReportController = require('./controller.js')
 
+const MINUTE_MS = 60000
+
 const runAutomatedSnowReport = () => {
 
   const ifNineRunReport = () => {
@@ -15,7 +17,17 @@ const runAutomatedSnowReport = () => {
 
   setInterval(() => {
     ifNineRunReport()
-  }, 60 * 60000)
+  }, 60 * MINUTE_MS)
 }
 
-runAutomatedSnowReport()
+const startApp = () => {
+  const watchForTopOfHour = setInterval(() => {
+    if (new Date().getMinutes() === 0) {
+      clearInterval(watchForTopOfHour)
+      runAutomatedSnowReport()
+    }
+    console.log('interval')
+  }, MINUTE_MS)
+}
+
+startApp()
