@@ -4,7 +4,7 @@ const locations = require('./locations.js')
 const testLocations = require('./testLocations.js')
 
 const fetchForecast = async (location) => {
-  const forecast = await fetch(`https://api.weather.gov/gridpoints/${location.gridpoints}/forecast`)
+  const forecast = await fetch(`https://api.weather.gov/gridpoints/${location.gridpoints}/forecast`, {cache: "no-store"})
     .then(data => data.json())
     .catch(console.error)
 
