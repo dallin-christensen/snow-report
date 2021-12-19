@@ -5,11 +5,11 @@ const MINUTE_MS = 60000
 const runAutomatedSnowReport = () => {
 
   const ifNineRunReport = () => {
-    if (new Date().getHours() === 9) {
+    if (new Date().getHours() === 8) {
       console.log('running report, stand by.')
       snowReportController()
     } else {
-      console.log('not 9am yo.')
+      console.log('not 8am yo.')
     }
   }
 
@@ -22,11 +22,11 @@ const runAutomatedSnowReport = () => {
 
 const startApp = () => {
   const watchForTopOfHour = setInterval(() => {
+    console.log('awaiting top of hour')
     if (new Date().getMinutes() === 0) {
       clearInterval(watchForTopOfHour)
       runAutomatedSnowReport()
     }
-    console.log('awaiting top of hour')
   }, MINUTE_MS)
 }
 
