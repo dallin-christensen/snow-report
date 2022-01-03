@@ -5,7 +5,7 @@ const sendSms = ({ body = '', to = process.env.TWILIO_TO_NUMBER, from = process.
   client.messages.create({
     to,
     from,
-    body,
+    body: body.slice(0, 1600),
   })
   .then((message) => onSuccess(message))
   .catch((err) => onError(err))
