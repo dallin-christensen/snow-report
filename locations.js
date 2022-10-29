@@ -18,7 +18,7 @@ const locations = [
   // },
   {
     name: 'Big Bear Resort',
-    subscribers: [users.sd_0],
+    subscribers: [users.bnd_0, users.sd_0],
     gridpoints: 'SGX/76,78',
   },
   {
