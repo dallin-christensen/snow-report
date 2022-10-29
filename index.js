@@ -4,8 +4,8 @@ const MINUTE_MS = 60000
 
 const runAutomatedSnowReport = () => {
 
-  const ifNineRunReport = () => {
-    if (new Date().getHours() === 8) {
+  const ifCorrectTimeRunReport = () => {
+    if (new Date().getHours() === 15) {
       console.log('running report, stand by.')
       snowReportController()
     } else {
@@ -13,10 +13,10 @@ const runAutomatedSnowReport = () => {
     }
   }
 
-  ifNineRunReport()
+  ifCorrectTimeRunReport()
 
   setInterval(() => {
-    ifNineRunReport()
+    ifCorrectTimeRunReport()
   }, 60 * MINUTE_MS)
 }
 

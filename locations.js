@@ -1,11 +1,11 @@
 const users = require('./users.js')
 
 const locations = [
-  {
-    name: 'Hoodoo Ski Area',
-    subscribers: [users.bnd_0, users.eug_0],
-    gridpoints: 'PQR/127,46',
-  },
+  // {
+  //   name: 'Hoodoo Ski Area',
+  //   subscribers: [users.bnd_0, users.eug_0],
+  //   gridpoints: 'PQR/127,46',
+  // },
   // {
   //   name: 'Beaver Mountain Ski Area',
   //   subscribers: [],
@@ -31,11 +31,11 @@ const locations = [
     subscribers: [users.bnd_0, users.eug_0],
     gridpoints: 'PQR/143,88',
   },
-  {
-    name: 'Willamette Pass',
-    subscribers: [users.bnd_0, users.eug_0],
-    gridpoints: 'PQR/115,11',
-  }
+  // {
+  //   name: 'Willamette Pass',
+  //   subscribers: [users.bnd_0, users.eug_0],
+  //   gridpoints: 'PQR/115,11',
+  // }
 ]
 
 module.exports = locations
