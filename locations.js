@@ -3,34 +3,34 @@ const users = require('./users.js')
 const locations = [
   {
     name: 'Hoodoo Ski Area',
-    subscribers: [],
+    subscribers: [users.bnd_0, users.eug_0],
     gridpoints: 'PQR/127,46',
   },
-  {
-    name: 'Beaver Mountain Ski Area',
-    subscribers: [],
-    gridpoints: 'SLC/64,65',
-  },
-  {
-    name: 'Powder Mountain',
-    subscribers: [users.bnd_0, users.slc_0],
-    gridpoints: 'SLC/107,202',
-  },
   // {
-  //   name: 'Big Bear Resort',
+  //   name: 'Beaver Mountain Ski Area',
   //   subscribers: [],
-  //   gridpoints: 'SGX/76,78',
+  //   gridpoints: 'SLC/64,65',
   // },
+  // {
+  //   name: 'Powder Mountain',
+  //   subscribers: [users.bnd_0],
+  //   gridpoints: 'SLC/107,202',
+  // },
+  {
+    name: 'Big Bear Resort',
+    subscribers: [users.sd_0],
+    gridpoints: 'SGX/76,78',
+  },
   {
     name: 'Mt Bachelor',
-    subscribers: [users.bnd_0, users.bnd_1],
+    subscribers: [users.bnd_0, users.bnd_1, users.eug_0, users.sd_0],
     gridpoints: 'PDT/22,39',
   },
-  // {
-  //   name: 'Mt Hood Meadows',
-  //   subscribers: [users.bnd_0, users.bnd_1],
-  //   gridpoints: 'PQR/143,88',
-  // },
+  {
+    name: 'Mt Hood',
+    subscribers: [users.bnd_0, users.eug_0],
+    gridpoints: 'PQR/143,88',
+  },
   {
     name: 'Willamette Pass',
     subscribers: [users.bnd_0, users.eug_0],
