@@ -19,13 +19,13 @@ const parseReport = (forecast, location) => {
 
   // if no periods given, send message
   if (!forecast.properties) {
-    report = report + 'report crapped out... sorry. 😬'
-    inchesOnlyReport = inchesOnlyReport + 'report crapped out... sorry. 😬'
+    report = report + 'report failed'
+    inchesOnlyReport = inchesOnlyReport + 'report failed'
 
     console.warn(`${location.name} crapped out...`)
     console.warn(JSON.stringify(forecast))
 
-    return [report, inchesOnlyReport]
+    return [report, inchesOnlyReport, true]
   }
 
   const snowPeriods = forecast.properties.periods
@@ -61,17 +61,19 @@ const parseReport = (forecast, location) => {
 }
 
 const sendSms = (msgs, location) => {
-  const [report, inchesOnlyReport] = msgs
+  const [report, inchesOnlyReport, reportFailed = false] = msgs
   const onError = (err) => console.error(`error: ${err}`)
 
   location.subscribers.forEach((subscriber) => {
     const onSuccess = () => console.log(`Successfully sent ${location.name} snow report to ${subscriber.name}.`)
-    smsTools.sendSms({
-      body: subscriber.ff_inchesOnly ? inchesOnlyReport : report,
-      to: subscriber.number,
-      onSuccess,
-      onError,
-    })
+    if (!reportFailed || subscriber.name === 'Dallin') {
+      smsTools.sendSms({
+        body: subscriber.ff_inchesOnly ? inchesOnlyReport : report,
+        to: subscriber.number,
+        onSuccess,
+        onError,
+      })
+    }
   })
 }
 
