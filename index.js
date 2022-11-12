@@ -1,13 +1,17 @@
 const snowReportController = require('./controller.js')
+const snowfallReport = require('./snowfallReport.js')
 
 const MINUTE_MS = 60000
 
 const runAutomatedSnowReport = () => {
 
   const ifCorrectTimeRunReport = () => {
-    if (new Date().getHours() === 15) {
+    const hour = new Date().getHours()
+    if (hour === 16) {
       console.log('running report, stand by.')
       snowReportController()
+    } else if (hour === 15) {
+      snowfallReport()
     } else {
       console.log('not 8am yo.')
     }

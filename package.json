@@ -12,6 +12,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "node-fetch": "^2.6.1",
+    "puppeteer": "^19.2.2",
     "twilio": "^3.54.1"
   }
 }
